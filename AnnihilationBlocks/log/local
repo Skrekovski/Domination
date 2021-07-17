@@ -1,0 +1,26 @@
+globalid=gsiftp://situla.fis.unm.si:2811/jobs/qbFNDmA1x8wnhOvNMn1r2KQpABFKDmABFKDmkvMKDmABFKDmDRRqdn
+headnode=gsiftp://situla.fis.unm.si:2811/jobs
+interface=org.nordugrid.gridftpjob
+lrms=SLURM
+queue=compute
+localid=12174
+args=AnnihilationBlocks.sh 
+argscode=0
+subject=/C=SI/O=SiGNET/O=FIS Novo mesto/OU=HPC Rudolf/CN=Riste Skrekovski
+starttime=20200626073152Z
+lifetime=259200
+rerun=0
+downloads=0
+uploads=0
+jobname=AnnihilationBlocks
+gmlog=log
+cleanuptime=20200703174616Z
+delegexpiretime=20200626182915Z
+clientname=178.172.53.194:46730
+delegationid=a4681ebf98c8
+sessiondir=/ceph/grid/session/qbFNDmA1x8wnhOvNMn1r2KQpABFKDmABFKDmkvMKDmABFKDmDRRqdn
+diskspace=0
+freestagein=no
+voms=/hpc.fis.unm.si
+transfershare=_default
+priority=50

@@ -1,0 +1,35 @@
+<ComputingActivity xmlns="http://schemas.ogf.org/glue/2009/03/spec_2.0_r1" BaseType="Activity" CreationTime="2020-06-30T17:47:04Z" Validity="10800">
+  <ID>urn:caid:situla.fis.unm.si:org.nordugrid.gridftpjob:qbFNDmA1x8wnhOvNMn1r2KQpABFKDmABFKDmkvMKDmABFKDmDRRqdn</ID>
+  <Name>AnnihilationBlocks</Name>
+  <OtherInfo>SubmittedVia=org.nordugrid.gridftpjob</OtherInfo>
+  <Type>single</Type>
+  <IDFromEndpoint>urn:idfe:qbFNDmA1x8wnhOvNMn1r2KQpABFKDmABFKDmkvMKDmABFKDmDRRqdn</IDFromEndpoint>
+  <JobDescription>nordugrid:xrsl</JobDescription>
+  <State>nordugrid:FINISHED</State>
+  <State>file:finished</State>
+  <State>bes:Finished</State>
+  <State>emies:terminal</State>
+  <State>emiesattr:client-stageout-possible</State>
+  <ExitCode>0</ExitCode>
+  <Owner>/C=SI/O=SiGNET/O=FIS Novo mesto/OU=HPC Rudolf/CN=Riste Skrekovski</Owner>
+  <LocalOwner>fis003</LocalOwner>
+  <RequestedTotalWallTime>604800</RequestedTotalWallTime>
+  <RequestedSlots>1</RequestedSlots>
+  <StdIn>/dev/null</StdIn>
+  <StdOut>AnnihilationBlocks.log</StdOut>
+  <StdErr>AnnihilationBlocks.log</StdErr>
+  <LogDir>log</LogDir>
+  <ExecutionNode>compute04.fis.unm.si</ExecutionNode>
+  <Queue>compute</Queue>
+  <UsedTotalWallTime>382425</UsedTotalWallTime>
+  <UsedTotalCPUTime>767382</UsedTotalCPUTime>
+  <UsedMainMemory>0</UsedMainMemory>
+  <SubmissionTime>2020-06-26T07:31:52Z</SubmissionTime>
+  <EndTime>2020-06-30T17:46:16Z</EndTime>
+  <WorkingAreaEraseTime>2020-07-03T17:46:16Z</WorkingAreaEraseTime>
+  <ProxyExpirationTime>2020-06-26T18:29:15Z</ProxyExpirationTime>
+  <SubmissionHost>178.172.53.194</SubmissionHost>
+  <Associations>
+    <ComputingShareID>urn:ogf:ComputingShare:situla.fis.unm.si:compute</ComputingShareID>
+  </Associations>
+</ComputingActivity>
