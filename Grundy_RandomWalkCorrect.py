@@ -6,7 +6,7 @@ from random import *
 # Checking if a new element can be inserted
 def Free(v):
     global s, S, VS, US, G
-    
+
     L=[x for x in G.neighbors(v) if x not in US]
     if L==[]:
         return False
@@ -28,8 +28,8 @@ def ResetUnion():
     US = []  
     for x in S:
         ExpandUnion(x)
-        
-def GrundingTotalDomination2():
+
+def GrundingTotalDomination():
     global G, s, S, VS, US
 
     bests=0                        # best of the bests 
@@ -37,74 +37,32 @@ def GrundingTotalDomination2():
 
     n=G.order()
     start_vertex=-1
-    S=[]; US=[] 
+    S=[]; US=[]; s=0 
     while start_vertex <= n-1:
         if S==[] and start_vertex == n-1:   # ending
             start_vertex+=1
             continue   
         if S==[]:                 # inicializacija
             start_vertex+=1
-            S=[start_vertex]
+            S=[start_vertex]; s=1
+            VS=[0 for i in range(n)]; VS[start_vertex]=1
             US=G.neighbors(start_vertex)
             k=0   
             continue
         if k==n:                            # odstranimo zadnji 
-            k=S[len(S)-1]+1 
-            S.pop(len(S)-1) 
-            ResetUnion()           # nanovo unijo
-            continue
-        if (k not in S) and Free(k):    # k dodamo v S
-            ExpandUnion(k)            
-            S.append(k)
-            k=0
-            if len(S) > bests:
-                bests = len(S); bestS = list(S) 
-        else:
-            k=k+1 
-    return bests, bestS               
-
-# ----------------------------------------------------------
-def GrundingTotalDominationOld():
-    global G, s, S, VS, US
-
-    bests=0                        # best of the bests 
-    bestS=[]
-
-    n=G.order()
-    start_vertex=-1
-    S=[]; US=[]; 
-    while start_vertex <= n-1:
-        if S==[] and start_vertex == n-1:
-            start_vertex+=1
-            continue
-        if S==[]:
-            start_vertex+=1
-            #print ("start vertex =", start_vertex)
-            S=[start_vertex]
-            US=G.neighbors(start_vertex)
-            VS=[0 for i in G.vertices()]; VS[start_vertex]=1
-            s=1; k=0   
-            continue
-        if k==n:
             k=S[s-1]+1 
-                # odstranimo zadnji
-            VS[S[s-1]-1]=0
-            S.pop(s-1) 
+            S.pop(s-1);VS[s-1]=0;s-=1
             ResetUnion()           # nanovo unijo
-            s=s-1
             continue
-        if Free(k):    # k dodamo v S
-            VS[k]=1
-            ExpandUnion(k)
-            s=s+1
-            S.append(k)
+        if VS[k]==0 and Free(k):    # k dodamo v S
+            ExpandUnion(k)            
+            S.append(k); s+=1
+            k=0
             if s > bests:
                 bests = s; bestS = list(S) 
         else:
-            k=k+1
-        #print ("s=",s,"S=",S,"US=",US,"VS=",VS, "start_vrx=",start_vertex, "k=",k, "bestS=", bestS)    
-    return bests, bestS         
-
+            k=k+1 
+    return bests, bestS     
 
 def StartGraph(p,n):
     G=graphs.RandomGNP(n,p)
@@ -131,7 +89,6 @@ def RW():
         G=G3
         G.relabel()
         g3=GrundingTotalDomination()
-        sage
         if g1[0] * g2[0] != g3[0]:
             print ("-----------Bingo----------")
             print ("G1=",G1.graph6_string(),"\nG2=",G2.graph6_string(),"\nG3=",G3.graph6_string())  
