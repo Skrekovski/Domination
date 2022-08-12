@@ -4,33 +4,32 @@ import sys
 from sage.all import *
 from random import *
 import heapq
+import gc
 
 def domination_sequence(g):
 	n = g.order()
-	dolzina = [-1 for i in range(1 << n)]
-	parent = [None for i in range(1 << n)]
-	dolzina[0] = 0
+	dolzina = dict()
+	dolzina[0] = (0, None, None)
 	q = [(0, 0)]
 	while len(q) > 0:
 		l, mask = heapq.heappop(q)
-		if l < dolzina[mask]:
+		if l < dolzina.get(mask, (-1, None, None))[0]:
 			continue  # Not on turn yet
 		for v in range(n):
 			# Add vertex v
 			nei = sum(1 << u for u in g.neighbors(v))
 			nmask = nei | mask
-			if nmask != mask and l + 1 > dolzina[nmask]:
-				dolzina[nmask] = l + 1
-				parent[nmask] = (mask, v)
+			dnm, _, _ = dolzina.get(nmask, (-1, None, None))
+			if nmask != mask and l + 1 > dnm:
+				dolzina[nmask] = (l + 1, mask, v)
 				heapq.heappush(q, (l + 1, nmask)) 
 	vall = sum(1 << x for x in range(n))
 	p = vall
 	seq = []
-	while parent[p] != None:
-		p, v = parent[p]
+	while dolzina[p][2] != None:
+		_, p, v = dolzina[p]
 		seq.append(v)
-	return seq[::-1], dolzina[vall]
-
+	return seq[::-1], dolzina[vall][0]
 
 def StartGraph(p,n):
     G=graphs.RandomGNP(n,p)
@@ -49,12 +48,15 @@ def RW():
         G1=StartGraph(p,n1)
         G2=StartGraph(p,n2)
         gd1=domination_sequence(G1)[1]
+        gc.collect()
         gd2=domination_sequence(G2)[1]
+        gc.collect()
         print ("n1, n2=", n1, n2, "gd1=,gd2=",gd1,gd2)  
         sys.stdout.flush()
         G3=G1.tensor_product(G2)
         G3.relabel()
         gd3=domination_sequence(G3)[1]
+        gc.collect()
         print ("gd3=", gd3)
 
         if gd1 * gd2 != gd3:
@@ -67,7 +69,7 @@ def RW():
 
 p=0.1+0.2*random()
 it = 2000
-a,b=3,
+a,b=3,7
 
 
 print ("Start")
