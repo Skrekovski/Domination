@@ -51,7 +51,7 @@ def RW():
         gc.collect()
         gd2=domination_sequence(G2)[1]
         gc.collect()
-        print ("n1, n2=", n1, n2, "gd1=,gd2=",gd1,gd2)  
+        print ("n1, n2=", n1, n2, "gd1=,gd2=,g3=",gd1,gd2)  
         sys.stdout.flush()
         G3=G1.tensor_product(G2)
         G3.relabel()
