@@ -78,8 +78,8 @@ def Search():
 
 print ("Start:")
 strG=str(sys.argv[1])
-print (sys.argv[2])
-Total=bool(int(sys.argv[2]))
+#print (sys.argv[2])
+Total=False
 print ("graph6_string=",strG, "\n Total Domination",Total) 
 G=Graph(strG)
 sys.stdout.flush() 
