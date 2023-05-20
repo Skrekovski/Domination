@@ -38,7 +38,7 @@ def MPE(G,H):
 
 # -------- SEARCH
 def Search():
-    global a,b
+    global a,b,c
 
     print ("Start:")
     Table_Str=[]
@@ -47,19 +47,23 @@ def Search():
     print ("Number of graphs =", len(Table_Str))    
     for i in range(a,b):
         G=Graph(Table_Str[i])
-        for j in range(i,len(Table_Str)): 
+        for j in range(i,c): 
             H=Graph(Table_Str[j])   
             MpG=Graph(MPE(G,H))
             D=MpG.dominating_set(total=False)
             print ("i,j=",i,j,"Gamma=", len(D))
+            if len(D)==4:
+                print("Bingo   ",G.graph_string(), H.graph6_string(), len(D))
+            sys.stdout.flush() 
             if len(D)>=5:
-                print("Bingo   ",H.graph6_string(), len(D))
+                print("BBingo   ",G.graph_string(),H.graph6_string(), len(D))
             sys.stdout.flush() 
     print ("\n --- The End ---", i)
     sys.stdout.flush()        
 
 a=int(sys.argv[1])
 b=int(sys.argv[2])
+c=int(sys.argv[3])
 Search()
 
 

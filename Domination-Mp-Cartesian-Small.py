@@ -67,7 +67,8 @@ def Search():
 
 
 print ("Start:")
-strG=str(sys.argv[1])
+a=int(sys.argv[1])
+b=int(sys.argv[2])
 G=Graph(strG)
 DG=len(G.dominating_set(total=False))
 print (G.graph6_string(), DG)
