@@ -37,10 +37,10 @@ def TestSquareH(G):
     H=Graph(MPE(G,G))
     DG=G.dominating_set(total=False)
     DH=H.dominating_set(total=False)
-    #if len(DH) == len(DG) + 1:
-    #    print("gamma+1 ", G.graph6_string(),len(DH),len(DG))
+    if len(DH) == len(DG) + 1:
+        print("gamma+1 ", G.graph6_string(),len(DH),len(DG))
     if len(DH) >= len(DG) + 1:
-        print("Bingo gamma+1 ", G.graph6_string(),len(DH),len(DG), G.diameter())    
+        print("BingoBingo gamma+2 ", G.graph6_string(),len(DH),len(DG), G.diameter())    
 
 
 # -------- SEARCH
@@ -51,14 +51,15 @@ def Search():
     for line in sys.stdin:  
         G=Graph(line) 
         i=i+1
+        print(i)
         TestSquareH(G)
         sys.stdout.flush() 
-    print ("\n --- The End ---", i)
-    sys.stdout.flush()        
+     
 
 print ("Start:")
-G=graphs.PetersenGraph()
 Search()
+print ("\n --- The End ---", i)
+sys.stdout.flush()   
 
 
 
